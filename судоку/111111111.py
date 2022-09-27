@@ -12,8 +12,8 @@ for i in range(len(list_till9)):# заполняю рандомно первые
     del list_of_81filds[list_of_81filds.index(index_of_fild)]
     digit = random.choice(buf_list_of9)
     del buf_list_of9[buf_list_of9.index(digit)]
-    sudoku_fild[(index_of_fild // 9)][(index_of_fild % 9) - 1 if index_of_fild % 9 else 8] = digit
     print(index_of_fild, digit)
+    sudoku_fild[index_of_fild // 9 if index_of_fild % 9 else (index_of_fild // 9) - 1][(index_of_fild % 9) - 1 if index_of_fild % 9 else 8] = digit
 for i in range(9): # вывод на экран судоку
     for j in range(9):
         print(sudoku_fild[i][j], end=' ')
