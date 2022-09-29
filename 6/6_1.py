@@ -1,12 +1,19 @@
 # Написать функцию перевода десятичного числа в двоичное и обратно, без
 # использования функции int
-n = int(input())
-def is_bin(st: str) -> bool:
-    return st[1] == 'b'
-print(is_bin('0b001'))
-def number_system(n):
-    if n in [0, 1]:
-        return str(n)
-    else:
-        return str(n % 2) + number_system(n // 2)
-print(number_system(n)[::-1])
+inp = input()
+which_number_system = int(input())
+def number_system(s: str, a: int):
+    if a == 2:
+        s = int(s)
+        res = ''
+        while s not in [0, 1]:
+            res += str(s % 2)
+            s //= 2
+        res += str(s)
+        return res[::-1]
+    elif a == 10:
+        res = 0
+        for i in range(len(s)):
+            res += int(s[i]) * 2**(len(s) - (i + 1))
+        return res
+print(number_system(inp, which_number_system))
