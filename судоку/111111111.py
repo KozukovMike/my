@@ -10,7 +10,7 @@ buf_list_of9 = list_till9.copy()
 for i in range(len(list_till9)):# заполняю рандомно первые 9 ячеек
     index_of_fild = random.choice(list_of_81filds) # рандомим ячейку
     del list_of_81filds[list_of_81filds.index(index_of_fild)]
-    digit = random.choice(buf_list_of9)
+    digit = random.choice(buf_list_of9) # рандомим цифру
     del buf_list_of9[buf_list_of9.index(digit)]
     print(index_of_fild, digit)
     sudoku_fild[index_of_fild // 9 if index_of_fild % 9 else (index_of_fild // 9) - 1][(index_of_fild % 9) - 1 if index_of_fild % 9 else 8] = digit

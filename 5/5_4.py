@@ -12,7 +12,7 @@ if len(first_word) == len(second_word):
         second_word_bin += char2
         char0 = ''
         for j in range(len(char1)):
-            char0 += str(int(char1[j])^int(char2[j]))
+            char0 += str(int(char1[j]) ^ int(char2[j]))
         result += char0
     print(first_word_bin)
     print(second_word_bin)
