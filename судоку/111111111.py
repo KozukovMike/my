@@ -30,9 +30,9 @@ def get_list_of_numbers(sudoku, ind_of_string, ind_of_colomn):
     :return: список элементов недоступных для ячейки
     """
     set_of_free_digits = set()
-    for j in range(9):
+    for j in range(ind_of_colomn):
         set_of_free_digits.add(sudoku[ind_of_string][j])
-    for i in range(9):
+    for i in range(ind_of_string):
         set_of_free_digits.add(sudoku[i][ind_of_colomn])
     for i in range((ind_of_string // 3) * 3, ((ind_of_string // 3) + 1) * 3):
         for j in range((ind_of_colomn // 3) * 3, ((ind_of_colomn // 3) + 1) * 3):
