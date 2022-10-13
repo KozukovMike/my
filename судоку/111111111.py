@@ -5,14 +5,8 @@ t0 = time.time()
 sudoku_fild = [[0 for i in range(9)]for j in range(9)] # чисто поле судоку
 sudoku_fild_copy = copy.deepcopy(sudoku_fild)
 list_till9 = [1, 2, 3, 4, 5, 6, 7, 8, 9] # чисто лист с цифрами от 1 до 9
-list_of_81filds = [i for i in range(1, 82)] # чисто лист с 81 номером ячеек
-# for i in range(9): # вывод на экран судоку
-#     for j in range(9):
-#         print(sudoku_fild[i][j], end=' ')
-#     print()        # конец вывода
-# for i in range(len(list_till9)):# заполняю рандомно первые 9 ячеек
-# блок из заполнения первых 4 ячеек рандомно
 buf_list_of9 = list_till9.copy()
+# заполнение 3 на 3 квдратика
 for i in range(3):
     for j in range(3):
         digit = random.choice(buf_list_of9)
@@ -39,6 +33,7 @@ def get_list_of_numbers(sudoku, ind_of_string, ind_of_colomn):
             set_of_free_digits.add(sudoku[i][j])
     return list(set_of_free_digits)
 
+
 buf_list_of9 = list_till9.copy()
 k = 3
 flag = False
@@ -58,14 +53,14 @@ while k < 9:
     for j in range(k): # тут i будет = k
         list_of_unavailable_numbers = get_list_of_numbers(sudoku_fild, k, j)
         list_of_available_numbers = list(set(buf_list_of9).difference(list_of_unavailable_numbers))
-        if list_of_available_numbers == []:
+        if not list_of_available_numbers:
             flag = True
             break
         sudoku_fild[k][j] = random.choice(list_of_available_numbers)
     for i in range(k + 1): # тут j будет = k
         list_of_unavailable_numbers = get_list_of_numbers(sudoku_fild, i, k)
         list_of_available_numbers = list(set(buf_list_of9).difference(list_of_unavailable_numbers))
-        if list_of_available_numbers == []:
+        if not list_of_available_numbers:
             flag = True
             break
         sudoku_fild[i][k] = random.choice(list_of_available_numbers)
@@ -98,8 +93,9 @@ for i in range(9): # вывод на экран судоку
     print()        # конец вывода
 t1 = time.time()
 print(t1 - t0)
+
+
 def valid_solution(sudoku):
-    #print('\n'.join(map(str, sudoku)))
     buf = 0
     for i in sudoku:
         if len(set(i)) != len(i):
@@ -121,4 +117,6 @@ def valid_solution(sudoku):
         if 0 in j:
             return False
     return True
+
+
 print(valid_solution(sudoku_fild))
