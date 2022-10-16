@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 
 
 class Time:
@@ -13,9 +13,9 @@ class Time:
         if not isinstance(end_time, str):
             raise ValueError
         self.timeline = [start_time]
-        self.start_time = datetime.datetime.strptime(start_time, '%H:%M')
-        self.end_time = datetime.datetime.strptime(end_time, '%H:%M')
-        self.delta = datetime.timedelta(hours=int(delta.split(':')[0]), minutes=int(delta.split(':')[1]))
+        self.start_time = datetime.strptime(start_time, '%H:%M')
+        self.end_time = datetime.strptime(end_time, '%H:%M')
+        self.delta = timedelta(hours=int(delta.split(':')[0]), minutes=int(delta.split(':')[1]))
 
     def get_timeline(self):
         buf = self.start_time
@@ -59,4 +59,4 @@ class ReserveDateTime:
             raise ValueError
         if not isinstance(_time, str):
             raise ValueError
-        return self.times[self.dates.index(day)].reserve_time()
+        return self.times[self.dates.index(day)].reserve_time(_time)
