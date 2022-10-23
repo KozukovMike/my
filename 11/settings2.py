@@ -1,0 +1,1 @@
+DATABASE_URL = 'postgresql://me:2712@localhost:5432/category'
