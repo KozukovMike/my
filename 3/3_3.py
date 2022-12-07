@@ -1,5 +1,9 @@
-name, age, town = input(), input(), input()
-print(f'Hello {name}, ur age is {age} and u live in {town}')
-print('Hello {}, ur age is {} and u live in {}'.format(name, age, town))
-print('Hello %s, ur age is %s and u live in %s' % (name, age, town))
+a = [1, 2, 3]
+def ss(b):
+    c = []
+    for i in range(3):
+        a[i] += 10
+    return c
 
+k = ss(a)
+print(a)
