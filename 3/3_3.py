@@ -1,9 +1,5 @@
-a = [1, 2, 3]
-def ss(b):
-    c = []
-    for i in range(3):
-        a[i] += 10
-    return c
-
-k = ss(a)
-print(a)
+a = [1,2, 3,4 ,5 ,6 ,7 ,8]
+b = list(filter(lambda x: x%2, a))
+c = list(filter(lambda x: not x%2, a))
+print(b)
+print(c)
