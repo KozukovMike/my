@@ -160,7 +160,7 @@ def meeting():
     :return:
     '''
     i = 0
-    while i < len(list_women_not_married):
+    while i < len(list_men_not_married):
         j = 0
         while j < len(list_women_not_married):
             if (list_men_not_married[i].parents[0] == list_women_not_married[j].parents[0]
@@ -289,6 +289,7 @@ if __name__ == '__main__':
         birth_or_not()
         use_growing_up()
         become_18()
+        death()
         # list_boys = list_boys(filter(lambda x: x not in list_of_deaths, list_boys))
         # list_girls = list_girls(filter(lambda x: x not in list_of_deaths, list_girls))
         # list_men_not_married = list_men_not_married(filter(lambda x: x not in list_of_deaths, list_men_not_married))
@@ -320,9 +321,5 @@ print(len(list_men_not_married))
 print(list_boys[0].age)
 print(data_of_date)
 print(len(list_of_deaths))
-a = Boy([1, 1], ['1', '1'])
-for i in range(216):
-    a.growing_up()
-print(round(a.age, 1))
 print('the end')
 
