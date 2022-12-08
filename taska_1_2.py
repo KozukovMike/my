@@ -268,7 +268,7 @@ if __name__ == '__main__':
         a = Girl([12 - month, 1000 - years], [f'{i}First Man', f'{i}First Woman'])
         list_women_not_married.append(Woman(a))
         list_women_not_married[i].age = years + month / 12
-    for _ in range(300):
+    for _ in range(10):
         married_men = [i[0] for i in married]
         married_women = [i[1] for i in married]
         people = (list_men_not_married +
@@ -292,9 +292,7 @@ if __name__ == '__main__':
         use_growing_up()
         become_18()
         death()
-        print(list_of_deaths)
         buf = 0
-        print(list_of_deaths)
         while buf < len(list_boys):
             if list_boys[buf] in list_of_deaths:
                 print('hurray')
@@ -309,7 +307,6 @@ if __name__ == '__main__':
             else:
                 buf += 1
         i = 0
-        print(len(list_men_not_married), len(list_women_not_married), len(married))
         while i < len(married):
             if married[i][0] in list_of_deaths and married[i][1] not in list_of_deaths:
                 list_women_not_married.append(married[i][1])
@@ -321,7 +318,6 @@ if __name__ == '__main__':
                 del married[i]
             elif married[i][0] not in list_of_deaths and married[i][1] not in list_of_deaths:
                 i += 1
-        print(len(list_men_not_married), len(list_women_not_married), len(married))
         print(
             f'в конце месяца на острове {len(list_men_not_married) + len(married)} мужчин',
             f'{len(list_women_not_married) + len(married)} женщин',
