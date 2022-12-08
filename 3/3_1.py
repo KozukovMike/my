@@ -1,6 +1,6 @@
-sentense = input()
-number_of_spaces = sentense.count(' ')
-print('first way:', sentense.replace(' ', '-', number_of_spaces))
-value_of_r_spaces = len(sentense) - len(sentense.rstrip(' '))
-value_of_l_spaces = len(sentense) - len(sentense.lstrip(' '))
-print('-'*value_of_l_spaces + '-'.join(sentense.split()) + '-'*value_of_r_spaces)
+a = [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 0],
+        [11, 2, 4, 5, 7]
+    ]
+print(sum(a[:2]))

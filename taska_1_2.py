@@ -222,7 +222,7 @@ def death():
     '''
     for i in range(len(people)):
         if people[i].die():
-            list_of_deaths.append(i)
+            list_of_deaths.append(people[i])
 
 
 def become_18():
@@ -269,6 +269,8 @@ if __name__ == '__main__':
         list_women_not_married.append(Woman(a))
         list_women_not_married[i].age = years + month / 12
     for _ in range(300):
+        married_men = [i[0] for i in married]
+        married_women = [i[1] for i in married]
         people = (list_men_not_married +
                   list_women_not_married +
                   list_boys +
@@ -290,13 +292,24 @@ if __name__ == '__main__':
         use_growing_up()
         become_18()
         death()
-        # list_boys = list_boys(filter(lambda x: x not in list_of_deaths, list_boys))
-        # list_girls = list_girls(filter(lambda x: x not in list_of_deaths, list_girls))
-        # list_men_not_married = list_men_not_married(filter(lambda x: x not in list_of_deaths, list_men_not_married))
-        # list_women_not_married = list_women_not_married(filter(lambda x: x not in list_of_deaths, list_women_not_married))
-        # married_men = married_men(filter(lambda x: x not in list_of_deaths, married_men))
-        # married_women = married_women(filter(lambda x: x not in list_of_deaths, married_women))
+        print(list_of_deaths)
+        k = 0
+        print(list_of_deaths)
+        while k < len(list_boys):
+            if list_boys[k] in list_of_deaths:
+                print('hurray')
+                del list_boys[k]
+            else:
+                k += 1
+        k = 0
+        while k < len(list_girls):
+            if list_girls[k] in list_of_deaths:
+                print('hurray')
+                del list_girls[k]
+            else:
+                k += 1
         i = 0
+        print(len(list_men_not_married), len(list_women_not_married), len(married))
         while i < len(married):
             if married[i][0] in list_of_deaths and married[i][1] not in list_of_deaths:
                 list_women_not_married.append(married[i][1])
@@ -308,12 +321,14 @@ if __name__ == '__main__':
                 del married[i]
             elif married[i][0] not in list_of_deaths and married[i][1] not in list_of_deaths:
                 i += 1
+        print(len(list_men_not_married), len(list_women_not_married), len(married))
         print(
             f'в конце месяца на острове {len(list_men_not_married) + len(married)} мужчин',
             f'{len(list_women_not_married) + len(married)} женщин',
             f'{len(list_boys)} мальчиков',
             f'{len(list_girls)} девочек'
         )
+        list_of_deaths = []
 print(people)
 print(isinstance(people[0], Human))
 print(people[0])
