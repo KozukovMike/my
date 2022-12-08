@@ -1,7 +1,6 @@
-import copy
+
 import random
 import statistics
-from copy import deepcopy
 
 
 list_of_hair = ['blond', 'dark', 'dark brown', 'orange', 'white', 'light blond']
@@ -133,11 +132,11 @@ class Woman(Girl):
 
 
 def update_date(date: list):
-    '''
+    """
     обновляет дату на 1 месяц
     :param date:
     :return: date
-    '''
+    """
     date[0] += 1
     date[1] += date[0] // 12
     date[0] %= 12
@@ -145,91 +144,92 @@ def update_date(date: list):
 
 
 def use_growing_up():
-    '''
+    """
     обновляет возраст всех с списке +1 к месяцу
-    :param list1:
+    :param
     :return:
-    '''
-    for i in range(len(people)):
-        people[i].growing_up()
+    """
+    for k in range(len(people)):
+        people[k].growing_up()
 
 
 def meeting():
-    '''
+    """
     реализация встречи раз в месяц
     :return:
-    '''
-    i = 0
-    while i < len(list_men_not_married):
+    """
+    k = 0
+    while k < len(list_men_not_married):
         j = 0
         while j < len(list_women_not_married):
-            if (list_men_not_married[i].parents[0] == list_women_not_married[j].parents[0]
-                or list_men_not_married[i].parents[1] == list_women_not_married[j].parents[1]
+            if (
+                list_men_not_married[k].parents[0] == list_women_not_married[j].parents[0]
+                or list_men_not_married[k].parents[1] == list_women_not_married[j].parents[1]
             ):
                 pass
             else:
                 r_number = random.random()
                 if (
-                        list_men_not_married[i].eye_color == list_women_not_married[j].eye_color or
-                        list_men_not_married[i].hair_color == list_women_not_married[j].hair_color
+                        list_men_not_married[k].eye_color == list_women_not_married[j].eye_color or
+                        list_men_not_married[k].hair_color == list_women_not_married[j].hair_color
                 ) \
                         and r_number < 0.35:
-                    married.append([list_men_not_married[i], list_women_not_married[j]])
+                    married.append([list_men_not_married[k], list_women_not_married[j]])
                     list_women_not_married[j].marriage = True
-                    list_men_not_married[i].marriage = True
-                    del list_men_not_married[i]
+                    list_men_not_married[k].marriage = True
+                    del list_men_not_married[k]
                     del list_women_not_married[j]
                     break
                 elif r_number < 0.25:
-                    married.append([list_men_not_married[i], list_women_not_married[j]])
+                    married.append([list_men_not_married[k], list_women_not_married[j]])
                     list_women_not_married[j].marriage = True
-                    list_men_not_married[i].marriage = True
-                    del list_men_not_married[i]
+                    list_men_not_married[k].marriage = True
+                    del list_men_not_married[k]
                     del list_women_not_married[j]
                     break
             j += 1
         if j == len(list_women_not_married):
-            i += 1
+            k += 1
     return married
 
 
 def birth_or_not():
-    '''
+    """
     обновляет беременность женщин
     :return:
-    '''
-    for i in range(len(married)):
-        if not married[i][1].gestation_period:
-            married[i][1].fertilization()
-            if married[i][1].pregnant:
-                married[i][1].update_fetus()
+    """
+    for k in range(len(married)):
+        if not married[k][1].gestation_period:
+            married[k][1].fertilization()
+            if married[k][1].pregnant:
+                married[k][1].update_fetus()
         else:
-            married[i][1].update_fetus()
-        if married[i][1].gestation_period == 9:
-            married[i][1].gestation_period = 0
-            married[i][1].pregnant = False
+            married[k][1].update_fetus()
+        if married[k][1].gestation_period == 9:
+            married[k][1].gestation_period = 0
+            married[k][1].pregnant = False
             if random.randint(0, 1):
-                list_boys.append(Boy(data_of_date, married[i]))
+                list_boys.append(Boy(data_of_date, married[k]))
             else:
-                list_girls.append(Girl(data_of_date, married[i]))
+                list_girls.append(Girl(data_of_date, married[k]))
 
 
 def death():
-    '''
+    """
     если человек умер, то удаляет его из списка
-    :param list1:
+    :param
     :return: list2
-    '''
-    for i in range(len(people)):
-        if people[i].die():
-            list_of_deaths.append(people[i])
+    """
+    for k in range(len(people)):
+        if people[k].die():
+            list_of_deaths.append(people[k])
 
 
 def become_18():
-    '''
+    """
     переход в другой класс
     :return: список объектов которых надо занести в другой класс
-    '''
+    """
     k = 0
     while k < len(list_boys):
         if round(list_boys[k].age, 1) == 18:
@@ -293,21 +293,21 @@ if __name__ == '__main__':
         become_18()
         death()
         print(list_of_deaths)
-        k = 0
+        buf = 0
         print(list_of_deaths)
-        while k < len(list_boys):
-            if list_boys[k] in list_of_deaths:
+        while buf < len(list_boys):
+            if list_boys[buf] in list_of_deaths:
                 print('hurray')
-                del list_boys[k]
+                del list_boys[buf]
             else:
-                k += 1
-        k = 0
-        while k < len(list_girls):
-            if list_girls[k] in list_of_deaths:
+                buf += 1
+        buf = 0
+        while buf < len(list_girls):
+            if list_girls[buf] in list_of_deaths:
                 print('hurray')
-                del list_girls[k]
+                del list_girls[buf]
             else:
-                k += 1
+                buf += 1
         i = 0
         print(len(list_men_not_married), len(list_women_not_married), len(married))
         while i < len(married):
@@ -329,12 +329,4 @@ if __name__ == '__main__':
             f'{len(list_girls)} девочек'
         )
         list_of_deaths = []
-print(people)
-print(isinstance(people[0], Human))
-print(people[0])
-print(len(list_men_not_married))
-print(list_boys[0].age)
-print(data_of_date)
-print(len(list_of_deaths))
 print('the end')
-
